@@ -17,15 +17,14 @@ window.update()
 cav_width=window.winfo_width()
 cav_height=window.winfo_height()
 #根据窗口的长宽改变画布长宽
-canvas1=tk.Canvas(window,height=cav_height-100,width=cav_width)
+cav=tk.Canvas(window,height=cav_height-100,width=cav_width)
 
 
 img=Image.open('2.gif')
 photo=ImageTk.PhotoImage(img)
 #这里的坐标指的是图片的中心在画布中的位置,这里的参数第一个是宽度
-
-canvas1.create_image(cav_width*0.5,cav_height*0.5,image=photo)
-canvas1.pack()
+cav.create_image(cav_width*0.5,cav_height*0.5,image=photo)
+cav.pack()
 
 #menubar为一个容器,增加菜单栏功能
 menubar=Menu(window)
@@ -45,6 +44,10 @@ filemenu.add_command(label='exit',command=window.quit)
 def hit_me():
     tk.messagebox.showinfo(title='Hi',message='haha')
 btn1=ttk.Button(window,text='hit me',command=hit_me).pack()
+
+btn2=ttk.Button(window,text='计算').pack()
+cav.create_window(100,50,width=200,height=100,
+                  window=btn2)
 window.iconbitmap('car.ico')
 
 window.mainloop()
